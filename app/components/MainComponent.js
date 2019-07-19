@@ -42,31 +42,32 @@ const HomeIconWithBadge = props => {
   return <IconWithBadge {...props} badgeCount={1} />;
 };
 
-const getTabBarIcon = (navigation, focused, tintColor) => {
-  const { routeName } = navigation.state;
-  let IconComponent = Ionicons;
-  let iconName;
-  if (routeName === 'Home') {
-    // iconName = `home ${focused ? '' : '-outline'}`;
-    iconName = 'Home';
-    // We want to add badges to home tab icon
-    IconComponent = HomeIconWithBadge;
-  } else if (routeName === 'Profile') {
-    // iconName = `person ${focused ? '' : '-outline'}`;
-    iconName = 'Person';
-  }
+// const getTabBarIcon = (navigation, focused, tintColor) => {
+//   const { routeName } = navigation.state;
+//   let IconComponent = Ionicons;
+//   let iconName;
+//   if (routeName === 'Home') {
+//     iconName = `home ${focused ? '' : '-outline'}`;
+//     // iconName = 'home';
+//     // We want to add badges to home tab icon
+//     IconComponent = HomeIconWithBadge;
+//   } else if (routeName === 'Profile') {
+//     iconName = `md-person ${focused ? '' : '-outline'}`;
+//     // iconName = `home ${focused ? '' : '-outline'}`;
+//     // iconName = 'person';
+//   }
 
-  // You can return any component that you like here!
-  return <IconComponent name={iconName} size={25} color={tintColor} />;
-};
+//   // You can return any component that you like here!
+//   return <IconComponent name={iconName} size={25} color={tintColor} />;
+// };
 
 
 // Tab Navigation 
 const TabNavigator = createBottomTabNavigator(
   {
     Home: HomeScreen,
-
     Profile: ProfileScreen,
+    
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -75,12 +76,14 @@ const TabNavigator = createBottomTabNavigator(
         let IconComponent = Ionicons;
         let iconName;
         if (routeName === 'Home') {
-          iconName = `ios-information-circle${focused ? '' : '-outline'}`;
+          // iconName = `ios-home${focused ? '' : '-outline'}`;
+          iconName = `ios-home`;
           // Sometimes we want to add badges to some icons. 
           // You can check the implementation below.
           IconComponent = HomeIconWithBadge; 
-        } else if (routeName === 'Settings') {
-          iconName = `ios-options`;
+        } else if (routeName === 'Profile') {
+          // iconName = `ios-person${focused ? '' : '-outline'}`;
+          iconName = `ios-person`;
         }
 
         // You can return any component that you like here!
