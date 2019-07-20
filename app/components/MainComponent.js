@@ -1,7 +1,7 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { ScrollView, Text, View, Image, StyleSheet } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {createBottomTabNavigator, createStackNavigator, createDrawerNavigator, createAppContainer } from "react-navigation";
+import {createBottomTabNavigator, createStackNavigator, createDrawerNavigator, createAppContainer, DrawerItems, SafeAreaView } from "react-navigation";
 
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
@@ -64,6 +64,21 @@ const AddRoutineNavigator = createStackNavigator({
   })
 });
 
+const CustomDrawerContentComponent = (props) => (
+  <ScrollView>
+    <SafeAreaView style={styles.container}
+    forceInset={{ top: 'always', horizontal: 'never'}}>
+      <View style={{flex:1}}>
+        <Image source={require('../assets/images/logo.png')}
+        style={styles.drawerImage}/>
+        </View>
+        <View style={{flex:2}}>
+          <Text style={styles.drawerHeaderText}>TimeKeep</Text>
+        </View>
+      <DrawerItems {...props}/>
+    </SafeAreaView>
+  </ScrollView>
+);
 
 const ProfileNavigator = createDrawerNavigator({
   Profile: {
@@ -94,6 +109,10 @@ const ProfileNavigator = createDrawerNavigator({
       )
     }
   }
+},
+{
+  drawerBackgroundColor: '#B0E0E6',
+  contentComponent: CustomDrawerContentComponent
 })
 
 // Tab Navigation 
@@ -134,6 +153,31 @@ const TabNavigator = createBottomTabNavigator(
   }
 );
 
+const styles = StyleSheet.create({
+  container: {
+      flex:1
+  },
+  drawerHeader: {
+      backgroundColor: '#512DA8',
+      height: 100,
+      alignItems: 'center',
+      justifyContent: 'center',
+      flex: 1,
+      flexDirection: 'row'
+  },
+  drawerHeaderText: {
+      color: 'white',
+      fontSize: 24,
+      fontWeight: 'bold',
+      flexDirection: 'row'
+  },
+  drawerImage: {
+      margin: 10,
+      width: 40,
+      height: 40,
+      flexDirection: 'row'
+  }
+})
 
 // export default createAppContainer(AppNavigator);
 export default createAppContainer(TabNavigator);

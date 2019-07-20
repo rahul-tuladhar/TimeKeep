@@ -9,17 +9,16 @@ class EditProfileScreen extends Component {
         super(props);
         this.state = {
             firstName: 'First Name',
-            lastName: 'Last Name'
+            lastName: 'Last Name',
+            email: 'Email',
         };
     }
     render() {
         return (
-            <View style={{flex:1, padding:10}}>
+            <ScrollView>
+            <View style={{flex:1}}>
                 <Card
                 title={"First Name"}>
-                {/* <Text style={{padding:10}}>
-                    {this.state.text}
-                </Text> */}
                 <TextInput
                     style={{height:40}}
                     placeholder="Edit First Name"
@@ -27,11 +26,10 @@ class EditProfileScreen extends Component {
                     value={this.state.firstName}
                 />
                 </Card>
+            </View>
+            <View style={{flex:1}}>
                 <Card
                 title={"Last Name"}>
-                {/* <Text style={{padding:10}}>
-                    {this.state.text}
-                </Text> */}
                 <TextInput
                     style={{height:40}}
                     placeholder="Edit Last Name"
@@ -40,6 +38,19 @@ class EditProfileScreen extends Component {
                 />
                 </Card>
             </View>
+            <View style={{flex:1}}>
+                <Card
+                title={"Email"}>
+                <TextInput
+                    style={{height:40}}
+                    placeholder="Edit Email"
+                    onChangeText={(email) => this.setState({email})}
+                    value={this.state.email}
+                />
+                </Card>
+            </View>
+            </ScrollView>
+
         )
     }
 }
