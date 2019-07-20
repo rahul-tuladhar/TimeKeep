@@ -5,7 +5,7 @@ import { Card } from 'react-native-elements';
 class AddRoutineScreen extends Component {
     render() {
         return (
-            <View style={{flex:1, alignItems: "center", justifyContent: "center"  }}>
+            <View style={{ alignItems: "center", justifyContent: "center"  }}>
                 <Card>
                 <Text>
                     Click the button below to create a new routine

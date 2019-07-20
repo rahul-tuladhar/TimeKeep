@@ -11,8 +11,8 @@ class ProfileScreen extends Component {
               <Card>
                 <Text> Profile Screen Scroll View</Text>
                 <Button
-                  title="Go to Home"
-                  onPress={() => this.props.navigation.navigate('Home')}
+                  title="Edit Profile"
+                  onPress={() => this.props.navigation.navigate('EditProfile')}
                   />
               </Card>
             </View>

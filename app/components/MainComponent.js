@@ -1,10 +1,11 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {createBottomTabNavigator, createStackNavigator, createAppContainer } from "react-navigation";
+import {createBottomTabNavigator, createStackNavigator, createDrawerNavigator, createAppContainer } from "react-navigation";
 
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import EditProfileScreen from '../screens/EditProfileScreen';
 import AddRoutineScreen from '../screens/AddRoutineScreen';
 import AddRoutineDetailsScreen from '../screens/AddRoutineDetailsScreen';
 
@@ -63,11 +64,43 @@ const AddRoutineNavigator = createStackNavigator({
   })
 });
 
+
+const ProfileNavigator = createDrawerNavigator({
+  Profile: {
+    screen: ProfileScreen,
+    navigationOptions: {
+      title: 'My Profile',
+      drawerLabel: 'My Profile',
+      drawerIcon: ({ tintColor }) => (
+        <Ionicons 
+          name='ios-person'
+          size={24}
+          color={tintColor}
+          />
+      )
+    }
+  },
+  EditProfile: {
+    screen: EditProfileScreen,
+    navigationOptions: {
+      title: 'Edit Profile',
+      drawerLabel: 'Edit Profile',
+      drawerIcon: ({ tintColor }) => (
+        <Ionicons
+          name='ios-create'
+          size={24}
+          color={tintColor}
+          />
+      )
+    }
+  }
+})
+
 // Tab Navigation 
 const TabNavigator = createBottomTabNavigator(
   {
     Home: HomeScreen,
-    Profile: ProfileScreen,
+    Profile: ProfileNavigator,
     AddRoutine: AddRoutineNavigator,
   },
   {
