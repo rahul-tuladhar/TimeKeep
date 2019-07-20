@@ -5,6 +5,8 @@ import {createBottomTabNavigator, createStackNavigator, createAppContainer } fro
 
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import AddRoutineScreen from '../screens/AddRoutineScreen';
+import AddRoutineDetailsScreen from '../screens/AddRoutineDetailsScreen';
 
 class IconWithBadge extends React.Component {
   render() {
@@ -42,32 +44,31 @@ const HomeIconWithBadge = props => {
   return <IconWithBadge {...props} badgeCount={1} />;
 };
 
-// const getTabBarIcon = (navigation, focused, tintColor) => {
-//   const { routeName } = navigation.state;
-//   let IconComponent = Ionicons;
-//   let iconName;
-//   if (routeName === 'Home') {
-//     iconName = `home ${focused ? '' : '-outline'}`;
-//     // iconName = 'home';
-//     // We want to add badges to home tab icon
-//     IconComponent = HomeIconWithBadge;
-//   } else if (routeName === 'Profile') {
-//     iconName = `md-person ${focused ? '' : '-outline'}`;
-//     // iconName = `home ${focused ? '' : '-outline'}`;
-//     // iconName = 'person';
-//   }
-
-//   // You can return any component that you like here!
-//   return <IconComponent name={iconName} size={25} color={tintColor} />;
-// };
-
+const AddRoutineNavigator = createStackNavigator({
+  AddRoutine: { screen: AddRoutineScreen },
+  AddRoutineDetails: { screen : AddRoutineDetailsScreen } // specifies the various components
+}, {
+  // initialRouteName: 'Add Routine',
+  navigationOptions: ({ navigation }) => ({
+      headerStyle: {
+          backgroundColor: "#512DA8"
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+          color: "#fff"            
+      },
+      // headerLeft: <Ionicons name='menu' size={24} color='white'
+      //         onPress={() => navigation.toggleDrawer()}
+      //         />
+  })
+});
 
 // Tab Navigation 
 const TabNavigator = createBottomTabNavigator(
   {
     Home: HomeScreen,
     Profile: ProfileScreen,
-    
+    AddRoutine: AddRoutineNavigator,
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -75,6 +76,9 @@ const TabNavigator = createBottomTabNavigator(
         const { routeName } = navigation.state;
         let IconComponent = Ionicons;
         let iconName;
+        if (routeName === 'AddRoutine') {
+          iconName = `ios-add-circle`;
+        }
         if (routeName === 'Home') {
           // iconName = `ios-home${focused ? '' : '-outline'}`;
           iconName = `ios-home`;
